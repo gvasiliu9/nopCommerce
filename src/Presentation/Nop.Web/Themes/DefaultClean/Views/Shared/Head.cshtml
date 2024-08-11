@@ -6,19 +6,16 @@
 @inject IUserAgentHelper userAgentHelper
 
 @{
-    Layout ="";
+    Layout = "";
     var themeName = await themeContext.GetWorkingThemeNameAsync();
     var supportRtl = await Html.ShouldUseRtlThemeAsync();
 
-    //add main CSS file
-    NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/styles{(supportRtl ? ".rtl" : "")}.css");
-    
-    //add swiper css file
-    if (catalogSettings.DisplayAllPicturesOnCatalogPages)
-    {
-        NopHtml.AppendCssFileParts("~/lib_npm/swiper/swiper-bundle.min.css");
-    }
+    // Css
+    NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/reset.css");
+    NopHtml.AppendCssFileParts($"~/Themes/{themeName}/Content/css/styles.css");
+    NopHtml.AppendCssFileParts($"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css");
 
-    //add jQuery UI css file
-    NopHtml.AppendCssFileParts("~/lib_npm/jquery-ui-dist/jquery-ui.min.css");
+    // Js
+    NopHtml.AppendScriptParts(ResourceLocation.Footer,
+    "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js");
 }
