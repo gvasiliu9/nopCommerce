@@ -1,0 +1,28 @@
+header {
+  background-color: #006989;
+}
+
+#language-selector .btn {
+  background-color: #005c78;
+  border-color: #005c78;
+  color: white;
+}
+
+#language-selector input[type="radio"]:checked + label {
+  background-color: white; /* Change the background color of the label */
+  color: #005c78;
+}
+
+#admin-links {
+  background-color: #e88d67;
+}
+
+#admin-links a {
+  color: white;
+  text-decoration: none;
+}
+
+#call-us {
+  color: white;
+  text-decoration: none;
+}

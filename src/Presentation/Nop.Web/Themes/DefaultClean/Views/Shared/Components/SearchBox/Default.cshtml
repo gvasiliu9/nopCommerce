@@ -1,0 +1,12 @@
+@model SearchBoxModel
+@using Nop.Core.Domain.Media
+@inject MediaSettings mediaSettings
+
+<div id="search-form">
+    <form asp-route="ProductSearch" method="get">
+        <div class="input-field">
+            <input id="search" class="form-control" type="search" required placeholder="@T("Search.SearchBox.Tooltip")"
+                aria-label="@T("Search.SearchBox.Text.Label")">
+        </div>
+    </form>
+</div>

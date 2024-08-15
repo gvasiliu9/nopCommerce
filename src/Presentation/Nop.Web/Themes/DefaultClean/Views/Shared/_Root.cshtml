@@ -8,29 +8,27 @@
 @{
     await Html.RenderPartialAsync("_JavaScriptDisabledWarning");
 }
-<div class="container">
-    @await Component.InvokeAsync(typeof(AdminHeaderLinksViewComponent))
-    @{
-        await Html.RenderPartialAsync("_Header");
-    }
-    <div class="header-menu">
-        @await Component.InvokeAsync(typeof(TopMenuViewComponent))
-    </div>
-    <div class="master-wrapper-content" id="main" role="main">
-        @* @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentBefore
-        }) *@
-
-        @if (IsSectionDefined("Breadcrumb"))
-        {
-            @RenderSection("Breadcrumb")
-        }
-        <div class="master-column-wrapper">
-            @RenderBody()
-        </div>
-        @* @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentAfter
-        }) *@
-    </div>
-    @await Component.InvokeAsync(typeof(FooterViewComponent))
+@await Component.InvokeAsync(typeof(AdminHeaderLinksViewComponent))
+@{
+    await Html.RenderPartialAsync("_Header");
+}
+<div class="header-menu">
+    @await Component.InvokeAsync(typeof(TopMenuViewComponent))
 </div>
+<div class="master-wrapper-content" id="main" role="main">
+    @* @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentBefore
+    }) *@
+
+    @if (IsSectionDefined("Breadcrumb"))
+    {
+        @RenderSection("Breadcrumb")
+    }
+    <div class="master-column-wrapper">
+        @RenderBody()
+    </div>
+    @* @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentAfter
+    }) *@
+</div>
+@await Component.InvokeAsync(typeof(FooterViewComponent))
 @await Component.InvokeAsync(typeof(EuCookieLawViewComponent))
 @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BodyEndHtmlTagBefore })

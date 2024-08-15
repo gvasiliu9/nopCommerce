@@ -1,0 +1,43 @@
+@model LanguageSelectorModel
+
+@inject Nop.Core.IWebHelper webHelper
+
+<div id="language-selector">
+@if (Model.AvailableLanguages.Count > 1)
+{
+    var returnUrl = webHelper.GetRawUrl(Context.Request);
+
+    if (Model.UseImages)
+    {
+        <ul class="language-list">
+            @foreach (var lang in Model.AvailableLanguages)
+            {
+                <li>
+                    <a href="@Url.RouteUrl("ChangeLanguage", new { langid = lang.Id, returnUrl }, webHelper.GetCurrentRequestProtocol())"
+                        title="@lang.Name">
+                        <img title='@lang.Name' alt='@lang.Name' @(lang.Id == Model.CurrentLanguageId ? " class=selected" : null)
+                            src="@Url.Content("~/images/flags/" + @lang.FlagImageFileName) " />
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        var languages = await Model.AvailableLanguages.SelectAwait(async lang => new SelectListItem
+                    {
+                        Text = lang.Name,
+                        Value = Url.RouteUrl("ChangeLanguage", new { langid = lang.Id, returnUrl }, webHelper.GetCurrentRequestProtocol()),
+                        Selected = lang.Id.Equals(Model.CurrentLanguageId)
+                    }).ToListAsync();
+
+        <div class="btn-group" role="group" aria-label="Language selector">
+            @foreach (var lang in languages.Where(x => x.Text != "En").Select((x, i) => new { Value = x, Index = i }))
+            {
+                <input type="radio" class="btn-check" name="lngradio_@lang.Index" id="lngradio_@lang.Index" autocomplete="off" checked="@lang.Value.Selected">
+                <label onclick="setLocation('@lang.Value.Value')" class="btn btn-outline-primary" for="lngradio_@lang.Index">@lang.Value.Text</label>
+            }
+        </div>
+    }
+}
+</div>
