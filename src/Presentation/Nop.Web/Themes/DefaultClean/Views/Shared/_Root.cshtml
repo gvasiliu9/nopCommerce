@@ -12,10 +12,9 @@
 @{
     await Html.RenderPartialAsync("_Header");
 }
-<div class="header-menu">
+<div class="container pt-5" id="main" role="main">
+
     @await Component.InvokeAsync(typeof(TopMenuViewComponent))
-</div>
-<div class="master-wrapper-content" id="main" role="main">
     @* @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentBefore
     }) *@
 
@@ -23,9 +22,7 @@
     {
         @RenderSection("Breadcrumb")
     }
-    <div class="master-column-wrapper">
-        @RenderBody()
-    </div>
+    @RenderBody()
     @* @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentAfter
     }) *@
 </div>

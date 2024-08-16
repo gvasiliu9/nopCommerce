@@ -2,33 +2,72 @@
 @* @await Component.InvokeAsync(typeof(FlyoutShoppingCartViewComponent)) *@
 
 <header class="py-3 px-5">
-    <div class="row">
-        <div class="col">
-            <div class="d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col">
                 @await Component.InvokeAsync(typeof(LogoViewComponent))
             </div>
-        </div>
-        <div class="col-10">
-            @* Language, Login, Links *@
-            <div class="d-flex d-flex justify-content-end align-items-center">
-                <div class="hstack gap-4">
-                    @await Component.InvokeAsync(typeof(LanguageSelectorViewComponent))
-                    <a id="call-us" href="tel:+1234567890">
-                        <i class="fas fa-phone"></i> Call Us
-                    </a>
+            <div class="col-10">
+                <div class="vstack gap-2">
+                    @* Language, Login, Links *@
+                    <div class="hstack gap-4">
+                        @await Component.InvokeAsync(typeof(LanguageSelectorViewComponent))
+                        <a id="call-us" href="tel:+1234567890">
+                            <i class="fas fa-phone"></i> Call Us
+                        </a>
+                    </div>
+                    @* Search bar, logo, Checkout *@
+                    <nav>
+                        <div class="row">
+                            <div class="col-9" id="header-search">
+                                <div id="header-search-rounded" class="hstack gap-0">
+                                    <select class="form-select" aria-label="Categories">
+                                        <option selected>Toate categoriile</option>
+                                        <option value="1">Computer</option>
+                                        <option value="2">Electronics</option>
+                                        <option value="3">Apparel</option>
+                                    </select>
+                                    @await Component.InvokeAsync(typeof(SearchBoxViewComponent))
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div id="header-menu" class="d-flex justify-content-between">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-user pe-2"></i> Account
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">Sing In</a></li>
+                                            <li><a class="dropdown-item" href="#">Register</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" href="#">Log Out</a></li>
+                                        </ul>
+                                    </div>
+                                    <button type="button" class="btn btn-primary position-relative">
+                                        <i class="fas fa-heart"></i>
+                                        <span
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            0
+                                            <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary position-relative">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            0
+                                            <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
             </div>
-            @* Search bar, logo, Checkout *@
-            <nav>
-                <div class="row">
-                    <div class="col-8">
-                        @await Component.InvokeAsync(typeof(SearchBoxViewComponent))
-                    </div>
-                    <div class="col-4">
-
-                    </div>
-                </div>
-            </nav>
         </div>
     </div>
 </header>

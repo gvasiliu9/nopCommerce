@@ -1,4 +1,7 @@
 @model LogoModel
-<a href="@Url.RouteUrl("Homepage")">
-    <img width="150" title="" alt="@Model.StoreName" src="@Model.LogoPath">
-</a>
+
+<div id="main-logo" class="d-flex align-items-center">
+    <a href="@Url.RouteUrl("Homepage")">
+        <img width="150" title="" alt="@Model.StoreName" src="@Model.LogoPath">
+    </a>
+</div>
