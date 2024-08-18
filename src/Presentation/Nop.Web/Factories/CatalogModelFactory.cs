@@ -648,7 +648,7 @@ public partial class CatalogModelFactory : ICatalogModelFactory
         var doc = await PrepareCategoryXmlDocumentAsync();
 
         var models = from xe in doc.Root.XPathSelectElements("CategorySimpleModel")
-            select GetCategorySimpleModel(xe);
+                     select GetCategorySimpleModel(xe);
 
         return models.ToList();
     }
@@ -666,11 +666,11 @@ public partial class CatalogModelFactory : ICatalogModelFactory
         var doc = await PrepareCategoryXmlDocumentAsync();
 
         var model = from xe in doc.Descendants("CategorySimpleModel")
-            where xe.XPathSelectElement("Id").Value == id.ToString()
-            select xe;
+                    where xe.XPathSelectElement("Id").Value == id.ToString()
+                    select xe;
 
         var models = from xe in model.First().XPathSelectElements("SubCategories/CategorySimpleModel")
-            select GetCategorySimpleModel(xe);
+                     select GetCategorySimpleModel(xe);
 
         return models.ToList();
     }
@@ -836,6 +836,7 @@ public partial class CatalogModelFactory : ICatalogModelFactory
             {
                 Id = category.Id,
                 Name = await _localizationService.GetLocalizedAsync(category, x => x.Name),
+                Image = await _pictureService.GetPictureUrlAsync(category.PictureId),
                 SeName = await _urlRecordService.GetSeNameAsync(category),
                 IncludeInTopMenu = category.IncludeInTopMenu
             };

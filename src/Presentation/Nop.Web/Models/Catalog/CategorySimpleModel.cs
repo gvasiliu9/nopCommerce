@@ -11,6 +11,8 @@ public partial record CategorySimpleModel : BaseNopEntityModel
 
     public string Name { get; set; }
 
+    public string Image { get; set; }
+
     public string SeName { get; set; }
 
     public int? NumberOfProducts { get; set; }

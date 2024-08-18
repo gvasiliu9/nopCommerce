@@ -1,0 +1,34 @@
+@model TopMenuModel
+
+@using Nop.Core.Domain.Catalog
+@using Nop.Core.Domain.Topics
+
+
+@{
+    var categories = Model.Categories.ToList();
+
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new
+        {
+            widgetZone = PublicWidgetZones.MobHeaderMenuBefore,
+            additionalData = Model
+        })
+
+    <div class="row justify-content-center g-4">
+        @foreach (var category in categories)
+        {
+            <div class="col-3 top-menu-category">
+                <a href="@(Url.RouteUrl<Category>(new { SeName = category.SeName }))">
+                    <div class="top-menu-category-content" style="background-image: url(@category.Image);">
+                        <p>@category.Name</p>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new
+        {
+            widgetZone = PublicWidgetZones.MobHeaderMenuAfter,
+            additionalData = Model
+        })
+}
