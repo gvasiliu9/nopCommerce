@@ -1,3 +1,7 @@
+body {
+  font-family: "Roboto" !important;
+}
+
 header {
   background-color: #006989;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Add shadow */
@@ -103,4 +107,22 @@ header {
 .top-menu-category a {
   text-decoration: none;
   font-weight: bold;
+}
+
+footer {
+  background-color: #ededed;
+}
+
+footer a {
+  color: #005c78;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #e88d67;
+}
+
+footer ul {
+  padding-left: 0;
 }
