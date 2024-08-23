@@ -119,6 +119,12 @@ public partial interface ICatalogModelFactory
     /// </returns>
     Task<XDocument> PrepareCategoryXmlDocumentAsync();
 
+    /// <summary>
+    /// Prepare featured products list
+    /// </summary>
+    /// <returns></returns>
+    Task<FeaturedProductsModel> PrepareFeaturedProductsModelAsync();
+
     #endregion
 
     #region Manufacturers

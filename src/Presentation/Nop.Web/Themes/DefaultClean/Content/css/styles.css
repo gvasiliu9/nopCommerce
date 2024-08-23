@@ -126,3 +126,75 @@ footer a:hover {
 footer ul {
   padding-left: 0;
 }
+
+
+.featured-products-row {
+  overflow-x: hidden;
+  gap: 1.5rem;
+}
+
+.product-item {
+  background-color: #F3F7EC;
+  border-radius: 5px;
+}
+
+.product-item .picture {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  overflow: hidden;
+}
+
+.product-item .picture img{
+  transition: transform 0.7s;
+}
+
+.product-item:hover .picture img {
+  transform: scale(1.1);
+}
+
+.product-item .product-title a {
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s; /* Smooth transition for text color */
+  font-size: large;
+}
+
+.product-item .description{
+    color: #005c78;
+}
+
+.product-item .product-title a:hover {
+  color: #e88d67;
+}
+
+.product-item .product-title{
+    line-height: 0.8;
+}
+
+.product-item .details{
+}
+
+.product-item .prices{
+    font-weight:bold;
+    font-size: large;
+}
+
+.product-item .buttons .heart-btn {
+  color: #686D76;
+  background-color:transparent;
+  border-color:transparent;
+}
+
+  .product-item .buttons .shopping-cart-btn {
+    background-color: #EDEDED;
+    border-color: #EDEDED;
+    color: #686D76;
+    transition: color 0.3s ease-in-out, background-color 0.7s ease-in-out;
+  }
+
+.product-item .buttons .shopping-cart-btn:hover {
+  background-color: #FABC3F;
+  border-color: transparent;
+  color: white;
+}
+

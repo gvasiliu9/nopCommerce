@@ -538,7 +538,7 @@ public partial class CatalogModelFactory : ICatalogModelFactory
     public virtual async Task<TopMenuModel> PrepareTopMenuModelAsync()
     {
         var cachedCategoriesModel = new List<CategorySimpleModel>();
-        //categories
+        //topMenu
         if (!_catalogSettings.UseAjaxLoadMenu)
             cachedCategoriesModel = await PrepareCategorySimpleModelsAsync();
 
@@ -637,7 +637,7 @@ public partial class CatalogModelFactory : ICatalogModelFactory
     }
 
     /// <summary>
-    /// Prepare root categories for menu
+    /// Prepare root topMenu for menu
     /// </summary>
     /// <returns>
     /// A task that represents the asynchronous operation
@@ -823,10 +823,10 @@ public partial class CatalogModelFactory : ICatalogModelFactory
         var result = new List<CategorySimpleModel>();
 
         //little hack for performance optimization
-        //we know that this method is used to load top and left menu for categories.
-        //it'll load all categories anyway.
+        //we know that this method is used to load top and left menu for topMenu.
+        //it'll load all topMenu anyway.
         //so there's no need to invoke "GetAllCategoriesByParentCategoryId" multiple times (extra SQL commands) to load childs
-        //so we load all categories at once (we know they are cached)
+        //so we load all topMenu at once (we know they are cached)
         var store = await _storeContext.GetCurrentStoreAsync();
         var allCategories = await _categoryService.GetAllCategoriesAsync(storeId: store.Id);
         var categories = allCategories.Where(c => c.ParentCategoryId == rootCategoryId).OrderBy(c => c.DisplayOrder).ToList();
@@ -904,6 +904,26 @@ public partial class CatalogModelFactory : ICatalogModelFactory
 
             return XDocument.Parse(xml);
         });
+    }
+
+    public async Task<FeaturedProductsModel> PrepareFeaturedProductsModelAsync()
+    {
+        var topMenu = await PrepareTopMenuModelAsync();
+
+        var dictionary = new Dictionary<string, IEnumerable<ProductOverviewModel>>();
+
+        foreach (var category in topMenu.Categories)
+        {
+            var featuredProducts = await _productService.GetCategoryFeaturedProductsAsync(category.Id);
+            var productsOverview = await _productModelFactory.PrepareProductOverviewModelsAsync(featuredProducts);
+
+            dictionary.Add(category.Name, productsOverview);
+        }
+
+        return new FeaturedProductsModel
+        {
+            Products = dictionary
+        };
     }
 
     #endregion
@@ -1586,7 +1606,7 @@ public partial class CatalogModelFactory : ICatalogModelFactory
 
         var currentStore = await _storeContext.GetCurrentStoreAsync();
         var categoriesModels = new List<SearchModel.CategoryModel>();
-        //all categories
+        //all topMenu
         var allCategories = await _categoryService.GetAllCategoriesAsync(storeId: currentStore.Id);
         foreach (var c in allCategories)
         {
@@ -1615,7 +1635,7 @@ public partial class CatalogModelFactory : ICatalogModelFactory
                 Value = "0",
                 Text = await _localizationService.GetResourceAsync("Common.All")
             });
-            //all other categories
+            //all other topMenu
             foreach (var c in categoriesModels)
             {
                 model.AvailableCategories.Add(new SelectListItem

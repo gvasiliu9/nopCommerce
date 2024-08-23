@@ -1,0 +1,17 @@
+﻿@model FeaturedProductsModel
+
+<div id="featured-products" class="py-5">
+    @foreach (var category in Model.Products)
+    {
+        @if (category.Value?.Any() ?? false)
+        {
+            <h1>@category.Key</h1>
+            <div class="featured-products-row d-flex g-4 pb-4">
+                @foreach (var product in category.Value)
+                {
+                    @await Html.PartialAsync("_ProductBox", product)
+                }
+            </div>
+        }
+    }
+</div>

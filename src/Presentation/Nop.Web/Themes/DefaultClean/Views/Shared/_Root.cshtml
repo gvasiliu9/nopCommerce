@@ -13,18 +13,11 @@
     await Html.RenderPartialAsync("_Header");
 }
 <div class="container pt-4" id="main" role="main">
-
-    @await Component.InvokeAsync(typeof(TopMenuViewComponent))
-    @* @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentBefore
-    }) *@
-
     @if (IsSectionDefined("Breadcrumb"))
     {
         @RenderSection("Breadcrumb")
     }
     @RenderBody()
-    @* @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentAfter
-    }) *@
 </div>
 @await Component.InvokeAsync(typeof(FooterViewComponent))
 @await Component.InvokeAsync(typeof(EuCookieLawViewComponent))

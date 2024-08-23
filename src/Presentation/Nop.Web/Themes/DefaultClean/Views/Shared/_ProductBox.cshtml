@@ -1,0 +1,60 @@
+﻿@model ProductOverviewModel
+
+@using Nop.Core
+@using Nop.Core.Domain.Catalog
+@using Nop.Core.Domain.Orders
+@using Nop.Core.Domain.Tax
+
+@inject CatalogSettings catalogSettings
+@inject IWorkContext workContext
+
+@{
+    //prepare "Add to cart" AJAX link
+    var addtocartlink = "";
+    var shoppingCartTypeId = (int)ShoppingCartType.ShoppingCart;
+    var quantity = 1;
+    if (Model.ProductPrice.ForceRedirectionAfterAddingToCart)
+    {
+        addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity, forceredirection = Model.ProductPrice.ForceRedirectionAfterAddingToCart });
+    }
+    else
+    {
+        addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity });
+    }
+
+    var addtowishlistlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = (int)ShoppingCartType.Wishlist, quantity = quantity });
+    var addtocomparelink = Url.RouteUrl("AddProductToCompare", new { productId = Model.Id });
+}
+<div class="product-item d-flex flex-column" data-productid="@Model.Id">
+    <div class="picture">
+        @{
+            var picture = Model.PictureModels.FirstOrDefault();
+            <a href="@(Url.RouteUrl<Product>(new { SeName = Model.SeName }))" title="@picture?.Title">
+                <img alt="@picture?.AlternateText" src="@picture?.ImageUrl" title="@picture?.Title" />
+            </a>
+        }
+    </div>
+    <div class="details pt-2 px-3 pb-3 flex-grow-1 d-flex flex-column justify-content-between">
+        <div class="v-stack">
+            <h2 class="product-title">
+                <a href="@(Url.RouteUrl<Product>(new {SeName = Model.SeName }))">@Model.Name</a>
+            </h2>
+            <div class="description" @(catalogSettings.ShowShortDescriptionOnCatalogPages ? "" : "data-short-description=none")>
+                @Html.Raw(Model.ShortDescription)
+            </div>
+        </div>
+        <div class="d-flex add-info justify-content-between pt-4 align-items-center">
+            <div class="prices">
+                <span class="price actual-price">@Model.ProductPrice.Price</span>
+            </div>
+            <div class="buttons">
+                <button type="button" class="btn btn-primary position-relative heart-btn">
+                    <i class="fas fa-heart"></i>
+                </button>
+                <button type="button" class="btn btn-primary position-relative shopping-cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
