@@ -30,5 +30,45 @@
 }
 
 @await Component.InvokeAsync(typeof(TopMenuViewComponent))
+
+<div id="home-page-info-block" class="row py-5 g-4">
+    <div class="col">
+        <div class="d-flex align-items-center home-page-info-block-item p-3">
+            <i class="fas fa-shopping-cart"></i>
+            <div class="v-stack gap-3 mx-3">
+                <p>Безопасная оплата</p>
+                <p>Безопасная оплата Вашего заказа.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="d-flex align-items-center home-page-info-block-item p-3">
+            <i class="fas fa-truck"></i>
+            <div class="v-stack gap-3 mx-3">
+                <p>Доставка в любой регион</p>
+                <p>Мы гарантируем Вам своевременную доставку всех товаров.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="d-flex align-items-center home-page-info-block-item p-3">
+            <i class="fa-solid fa-people-carry-box"></i>
+            <div class="v-stack gap-3 mx-3">
+                <p>Проверенный товар</p>
+                <p>Каждый товар проходит проверку качества перед упаковкой.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="d-flex align-items-center home-page-info-block-item p-3">
+            <i class="fas fa-phone-volume"></i>
+            <div class="v-stack gap-3 mx-3">
+                <p>Прием заказов 24/7</p>
+                <p>Оформите заказ в интернет-магазине "YOLO" прямо сейчас!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 @await Component.InvokeAsync(typeof(FeaturedProductsViewComponent))
 
