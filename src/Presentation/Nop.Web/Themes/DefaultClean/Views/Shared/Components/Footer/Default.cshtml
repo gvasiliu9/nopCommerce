@@ -8,131 +8,111 @@
 
 <footer class="mt-4 py-4">
     <div class="container">
-        @await Component.InvokeAsync(typeof(WidgetViewComponent), new
-            {
-                widgetZone = PublicWidgetZones.Footer,
-                additionalData = Model
-            })
-        <section class="footer-upper d-flex justify-content-between">
-            <div class="footer-block information">
-                <div class="title">
-                    <strong>@T("Footer.Information")</strong>
-                </div>
-                <ul class="list">
-                    @if (Model.SitemapEnabled && Model.DisplaySitemapFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a></li>
-                    }
-                    @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
-                    {
-                        <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
-                    }
-                    @if (Model.DisplayContactUsFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
-                    }
-                </ul>
+        <div class="row">
+            <div class="col">
+                @await Component.InvokeAsync(typeof(SocialButtonsViewComponent))
+                <hr />
             </div>
-            <div class="footer-block customer-service">
-                <div class="title">
-                    <strong>@T("Footer.CustomerService")</strong>
-                </div>
-                <ul class="list">
-                    @if (Model.SearchEnabled && Model.DisplayProductSearchFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a> </li>
-                    }
-                    @if (Model.NewsEnabled && Model.DisplayNewsFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("NewsArchive")">@T("News")</a></li>
-                    }
-                    @if (Model.BlogEnabled && Model.DisplayBlogFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
-                    }
-                    @if (Model.ForumEnabled && Model.DisplayForumsFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
-                    }
-                    @if (Model.RecentlyViewedProductsEnabled && Model.DisplayRecentlyViewedProductsFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("RecentlyViewedProducts")">@T("Products.RecentlyViewedProducts")</a></li>
-                    }
-                    @if (Model.CompareProductsEnabled && Model.DisplayCompareProductsFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("CompareProducts")">@T("Products.Compare.List")</a></li>
-                    }
-                    @if (Model.NewProductsEnabled && Model.DisplayNewProductsFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
-                    }
-                    @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn2).ToList())
-                    {
-                        <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
-                    }
-                    @if (Model.AllowCustomersToCheckGiftCardBalance)
-                    {
-                        <li><a href="@Url.RouteUrl("CheckGiftCardBalance")">@T("CheckGiftCardBalance")</a></li>
-                    }
-                </ul>
-            </div>
-            <div class="footer-block my-account">
-                <div class="title">
-                    <strong>@T("Footer.MyAccount")</strong>
-                </div>
-                <ul class="list">
-                    @if (Model.DisplayCustomerInfoFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
-                    }
-                    @if (Model.DisplayCustomerOrdersFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
-                    }
-                    @if (Model.DisplayCustomerAddressesFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a></li>
-                    }
-                    @if (Model.ShoppingCartEnabled && Model.DisplayShoppingCartFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a></li>
-                    }
-                    @if (Model.WishlistEnabled && Model.DisplayWishlistFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a></li>
-                    }
-                    @if (Model.AllowCustomersToApplyForVendorAccount && Model.DisplayApplyVendorAccountFooterItem)
-                    {
-                        <li><a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a></li>
-                    }
-                    @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
-                    {
-                        <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
-                    }
-                </ul>
-            </div>
-            <div class="footer-block follow-us">
-                <div class="social">
-                    <div class="title">
-                        <strong>@T("Footer.FollowUs")</strong>
+        </div>
+        <div class="row">
+            <div class="col">
+                <section class="footer-upper d-flex justify-content-between">
+                    <div class="footer-block follow-us">
+                        <div class="social">
+                            <div class="title">
+                                <strong>Categorii recomandate</strong>
+                                @{
+                                    var categories = Model.RecommendedCategories;
+
+                                    if(categories != null && categories.Any())
+                                    {
+                                        <ul class="list">
+                                            @foreach (var category in categories)
+                                            {
+                                                <li><a href="@Url.RouteUrl("Category", new { SeName = category.SeName})">@category.Name</a></li>
+                                            }
+                                        </ul>
+                                    }
+                                }
+                            </div>
+                        </div>
                     </div>
-                    @await Component.InvokeAsync(typeof(SocialButtonsViewComponent))
-                </div>
-                @* @await Component.InvokeAsync(typeof(NewsletterBoxViewComponent)) *@
+                    <div class="footer-block my-account">
+                        <div class="title">
+                            <strong>@T("Footer.MyAccount")</strong>
+                        </div>
+                        <ul class="list">
+                            <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
+                            <li><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
+                            <li><a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a></li>
+                            <li><a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-block customer-service">
+                        <div class="title">
+                            <strong>Relatii clienti</strong>
+                        </div>
+                        <ul class="list">
+                            <li><a href="@Url.RouteUrl("ProductSearch")">tel: +37362111827</a> </li>
+                            <li><a href="@Url.RouteUrl("ProductSearch")">email: sales@movo.md</a> </li>
+                        </ul>
+                    </div>
+                    <div class="footer-block information">
+                        <div class="title">
+                            <strong>@T("Footer.Information")</strong>
+                        </div>
+                        <ul class="list">
+                            @if (Model.SitemapEnabled && Model.DisplaySitemapFooterItem)
+                            {
+                                <li><a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a></li>
+                            }
+                            @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
+                            {
+                                <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
+                            }
+                            @if (Model.DisplayContactUsFooterItem)
+                            {
+                                <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+                            }
+                        </ul>
+                    </div>
+                </section>
             </div>
-        </section>
-        <section class="footer-lower d-flex justify-content-start">
-            <div class="footer-info">
-                <span class="footer-disclaimer">@T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)</span>
-                @if (Model.DisplayTaxShippingInfoFooter)
-                {
-                    var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
-                    <span class="footer-tax-shipping">
-                        @T(inclTax ? "Footer.TaxShipping.InclTax" : "Footer.TaxShipping.ExclTax",
-                                 Url.RouteTopicUrl("shippinginfo"))
-                    </span>
-                }
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr />
+                <section class="footer-lower d-flex justify-content-between">
+                    <div class="footer-logo d-flex align-items-center">
+                        <img width="150" src="~/Themes/DefaultClean/Content/Images/footer_logo.png" alt="MOVO" />
+                    </div>
+                    <div class="footer-info">
+                        <ul>
+                            <li class="footer-disclaimer">@T("Content.CopyrightNotice", DateTime.Now.Year,
+                                Model.StoreName)</li>
+                            <li>MOVO STORE S.R.L.</li>
+                            <li>MD-2069, str. Ion Creanga, 6V, mun. Chisinau, Republica Moldova</li>
+                            <li>IDNO: 1020600034721 | TVA: 0508719</li>
+                            <li>IBAN: MD73VI022240300001119MDL | BC "VICTORIABANK" S.A. suc. nr.3 Chisinau | BIC:
+                                VICBMD2X416
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-payments d-flex alignt-items-center">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="h-stack gap-3">
+                                    <img width="60" src="~/Themes/DefaultClean/Content/Images/visa.png" alt="Visa" />
+                                    <img width="60" src="~/Themes/DefaultClean/Content/Images/maestro.png" alt="Visa" />
+                                    <img width="60" src="~/Themes/DefaultClean/Content/Images/mastercard.png"
+                                        alt="Visa" />
+                                    <img width="60" src="~/Themes/DefaultClean/Content/Images/amex.png" alt="Visa" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </section>
+        </div>
     </div>
 </footer>

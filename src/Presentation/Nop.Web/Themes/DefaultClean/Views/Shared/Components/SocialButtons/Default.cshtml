@@ -1,0 +1,27 @@
+@model SocialModel
+
+<div id="social-media-links" class="d-flex justify-content-center">
+    @if (!string.IsNullOrEmpty(Model.FacebookLink))
+    {
+        <a class="btn btn-primary btn-fb" href="@Model.FacebookLink" role="button"><i class="fab fa-facebook"></i></a>
+    }
+    @if (!string.IsNullOrEmpty(Model.TwitterLink))
+    {
+        <a class="btn btn-primary btn-twitter" href="@Model.TwitterLink" role="button"><i class="fab fa-twitter"></i></a>
+    }
+    @if (Model.NewsEnabled)
+    {
+        <a class="btn btn-primary btn-rss" href="@Url.RouteUrl("NewsRSS", new {languageId = Model.WorkingLanguageId})"
+            role="button"><i class="fas fa-rss"></i></a>
+    }
+    @if (!string.IsNullOrEmpty(Model.YoutubeLink))
+    {
+        <a class="btn btn-primary btn-youtube" href="@Model.YoutubeLink" role="button"><i class="fab fa-youtube"></i></a>
+    }
+    @if (!string.IsNullOrEmpty(Model.InstagramLink))
+    {
+        <a class="btn btn-primary btn-instagram" href="@Model.InstagramLink" role="button"><i
+                class="fab fa-instagram"></i></a>
+
+    }
+</div>

@@ -1,4 +1,5 @@
 ﻿using Nop.Web.Framework.Models;
+using Nop.Web.Models.Catalog;
 
 namespace Nop.Web.Models.Common;
 
@@ -25,11 +26,8 @@ public partial record FooterModel : BaseNopModel
     public bool AllowCustomersToCheckGiftCardBalance { get; set; }
     public bool DisplayTaxShippingInfoFooter { get; set; }
     public bool HidePoweredByNopCommerce { get; set; }
-
     public int WorkingLanguageId { get; set; }
-
     public IList<FooterTopicModel> Topics { get; set; }
-
     public bool DisplaySitemapFooterItem { get; set; }
     public bool DisplayContactUsFooterItem { get; set; }
     public bool DisplayProductSearchFooterItem { get; set; }
@@ -45,6 +43,7 @@ public partial record FooterModel : BaseNopModel
     public bool DisplayShoppingCartFooterItem { get; set; }
     public bool DisplayWishlistFooterItem { get; set; }
     public bool DisplayApplyVendorAccountFooterItem { get; set; }
+    public IEnumerable<CategorySimpleModel> RecommendedCategories { get; set; }
 
     #region Nested classes
 
