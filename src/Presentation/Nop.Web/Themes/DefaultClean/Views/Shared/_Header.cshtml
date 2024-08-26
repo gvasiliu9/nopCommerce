@@ -9,23 +9,9 @@
             </div>
             <div class="col-10">
                 <div class="vstack gap-2">
-                    @* Language, Login, Links *@
+                    @* Language, Links *@
                     <div class="row">
-                        <div class="col-9 d-flex align-items-center header-top-links">
-                            @await Component.InvokeAsync(typeof(LanguageSelectorViewComponent))
-                            <span>
-                                <i class="fas fa-calendar pe-2"></i> Grafic: 9:00-18:00
-                            </span>
- @*                            @foreach (var topic in Model.Topics.Where(x => x.).ToList())
-                            {
-                                <a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">
-                                    <i class="fas fa-box pe-2"></i> @topic.Name
-                                </a>
-                            } *@
-                            <a id="call-us" href="tel:+1234567890">
-                                <i class="fas fa-phone pe-2"></i> 062111827
-                            </a>
-                        </div>
+                        @await Component.InvokeAsync(typeof(HeaderTopLinksViewComponent))
                     </div>
                     @* Search bar, logo, Checkout *@
                     <nav>
@@ -57,8 +43,6 @@
                                                             <li><a class="dropdown-item" href="#">Third Level Item 2</a></li>
                                                         </ul>
                                                     </li>
-
-
                                                 </ul>
                                             </li>
                                         </ul>

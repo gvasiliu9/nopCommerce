@@ -130,4 +130,10 @@ public partial interface ICommonModelFactory
     /// The task result contains the robots.txt file as string
     /// </returns>
     Task<string> PrepareRobotsTextFileAsync();
+
+    /// <summary>
+    /// Prepare the header top links model
+    /// </summary>
+    /// <returns></returns>
+    Task<HeaderTopLinksModel> PrepareHeaderTopLinksModelAsync();
 }
