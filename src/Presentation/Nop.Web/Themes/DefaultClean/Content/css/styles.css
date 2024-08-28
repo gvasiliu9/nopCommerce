@@ -91,9 +91,9 @@ header {
   position: absolute;
   bottom: 0;
   left: 25px;
-  color: rgb(255, 255, 255);
+  color: black;
   font-size: large;
-  background-color: #e88d67;
+  background-color: #f3f7ec;
   padding: 5px 10px;
   border-radius: 5px;
 }
