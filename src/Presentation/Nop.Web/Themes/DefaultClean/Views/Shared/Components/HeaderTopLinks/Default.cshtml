@@ -1,0 +1,20 @@
+﻿@model HeaderTopLinksModel
+@using Nop.Core.Domain.Customers
+@using Nop.Core.Domain.Topics
+@inject Nop.Core.IWebHelper webHelper
+
+<div class="col-9 d-flex align-items-center header-top-links">
+    @await Component.InvokeAsync(typeof(LanguageSelectorViewComponent))
+    <span>
+        <i class="fas fa-calendar pe-2"></i> Grafic: 9:00-18:00
+    </span>
+    @foreach (var topic in Model.Topics.ToList())
+    {
+        <a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">
+            <i class="fas fa-box pe-2"></i> @topic.Name
+        </a>
+    }
+    <a id="call-us" href="tel:+1234567890">
+        <i class="fas fa-phone pe-2"></i> 062111827
+    </a>
+</div>

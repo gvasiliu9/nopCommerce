@@ -640,5 +640,22 @@ public partial class CommonModelFactory : ICommonModelFactory
         return sb.ToString();
     }
 
+    public async Task<HeaderTopLinksModel> PrepareHeaderTopLinksModelAsync()
+    {
+        var topicModels = await (await _topicService.GetAllTopicsAsync(0))
+            .Where(t => t.IncludeInTopMenu)
+            .SelectAwait(async t => new HeaderTopLinksModel.TopicModel
+            {
+                Id = t.Id,
+                Name = await _localizationService.GetLocalizedAsync(t, x => x.Title),
+                SeName = await _urlRecordService.GetSeNameAsync(t),
+            }).ToListAsync();
+
+        return new HeaderTopLinksModel
+        {
+            Topics = topicModels
+        };
+    }
+
     #endregion
 }
