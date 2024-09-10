@@ -1,54 +1,13 @@
 @* @await Component.InvokeAsync(typeof(HeaderLinksViewComponent)) *@
 @* @await Component.InvokeAsync(typeof(FlyoutShoppingCartViewComponent)) *@
 
-<header class="py-4 pe-3 py-md-4 py-sm-4 py-lg-3">
+<header class="py-4 px-3 py-md-4 py-sm-4 py-lg-3">
     <div class="container">
-        <div class="row g-2">
-            <div class="col d-none d-lg-block">
+        <div class="row g-2 align-items-center">
+            <div class="col-3 col-lg-2">
                 @await Component.InvokeAsync(typeof(LogoViewComponent))
             </div>
-            <div class="col-1 col-lg-2 d-lg-none d-flex align-items-center">
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                    aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <form class="d-flex mt-3" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-11 col-lg-10">
+            <div class="col-9 col-lg-10">
                 <div class="vstack gap-2">
                     @* Language, Links *@
                     <div class="row d-none d-lg-block">
@@ -56,62 +15,30 @@
                     </div>
                     @* Search bar, logo, Checkout *@
                     <nav>
-                        <div class="row">
-                            <div class="col-8 col-sm-9 col-xl-9 col-lg-8 col-md-9">
-                                <div id="header-search-rounded" class="hstack gap-0">
-                                    <div class="dropdown d-none d-lg-block">
-                                        <button type="button" class="btn btn-primary dropdown-toggle"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fas fa-bars-staggered px-2"></i>Catalog
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#"> Menu Item 1</a></li>
-                                            <li><a class="dropdown-item" href="#"> Menu Item 2</a></li>
-                                            <li class="dropdown-submenu">
-                                                <a class="dropdown-item d-flex justify-content-between align-items-center"
-                                                    href="#">
-                                                    Second Level <i class="fas fa-chevron-right ms-4"></i>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Second Level Item 1</a></li>
-                                                    <li><a class="dropdown-item" href="#">Second Level Item 2</a></li>
-
-                                                    <li class="dropdown-submenu">
-                                                        <a class="dropdown-item d-flex justify-content-between align-items-center"
-                                                            href="#">
-                                                            Third Level <i class="fas fa-chevron-right ms-4"></i>
-                                                        </a>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a class="dropdown-item" href="#">Third Level Item 1</a>
-                                                            </li>
-                                                            <li><a class="dropdown-item" href="#">Third Level Item 2</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
+                        <div class="row g-0">
+                            <div class="col-8 col-sm-8 col-xl-9 col-lg-8 col-md-9">
+                                <div class="d-flex align-items-center">
+                                    <button id="catalog-toggler" class="navbar-toggler" type="button"
+                                        data-bs-toggle="offcanvas" data-bs-target="#catalog-navbar"
+                                        aria-controls="catalog-navbar" aria-label="Toggle catalog">
+                                        <i class="fas fa-bars"></i>
+                                    </button>
+                                    <div id="header-search-rounded" class="mx-3 mx-lg-4 hstack gap-0 flex-grow-1">
+                                        @await Component.InvokeAsync(typeof(SearchBoxViewComponent))
                                     </div>
-                                    @await Component.InvokeAsync(typeof(SearchBoxViewComponent))
                                 </div>
                             </div>
-                            <div class="col-4 col-sm-3 col-xl-3 col-lg-4 col-md-3">
-                                <div id="header-menu" class="d-flex justify-content-between">
-                                    <div class="btn-group d-none d-lg-block">
-                                        <button type="button" class="btn btn-primary dropdown-toggle"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fas fa-user pe-2"></i> Account
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Sing In</a></li>
-                                            <li><a class="dropdown-item" href="#">Register</a></li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" href="#">Log Out</a></li>
-                                        </ul>
-                                    </div>
-                                    <button type="button" class="btn btn-primary position-relative">
+                            <div class="col-4 col-sm-4 col-xl-3 col-lg-4 col-md-3 d-flex align-items-center">
+                                <div id="header-menu" class="d-flex justify-content-between flex-grow-1">
+                                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                                        data-bs-target="#user-navbar" aria-controls="user-navbar"
+                                        aria-label="Toggle user">
+                                        <i class="fas fa-user-group me-2"></i>
+                                        <span class="d-none d-lg-inline-block">Account</span>
+                                    </button>
+                                    <button class="navbar-toggler p-2 position-relative" type="button"
+                                        data-bs-toggle="offcanvas" data-bs-target="#wishes-navbar"
+                                        aria-controls="wishes-navbar" aria-label="Toggle wishes">
                                         <i class="fas fa-heart"></i>
                                         <span
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
@@ -119,7 +46,9 @@
                                             <span class="visually-hidden">unread messages</span>
                                         </span>
                                     </button>
-                                    <button type="button" class="btn btn-primary position-relative">
+                                    <button class="navbar-toggler p-2 position-relative" type="button"
+                                        data-bs-toggle="offcanvas" data-bs-target="#cart-navbar"
+                                        aria-controls="cart-navbar" aria-label="Toggle cart">
                                         <i class="fas fa-shopping-cart"></i>
                                         <span
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
@@ -136,3 +65,43 @@
         </div>
     </div>
 </header>
+
+@* Catalog *@
+<div class="offcanvas offcanvas-start" tabindex="-1" id="catalog-navbar" aria-labelledby="catalog-navbar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Catalog</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+    </div>
+</div>
+
+@* Account *@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="user-navbar" aria-labelledby="user-navbar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+    </div>
+</div>
+
+@* Wishes *@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="wishes-navbar" aria-labelledby="wishes-navbar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Wishes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Wishes"></button>
+    </div>
+    <div class="offcanvas-body">
+    </div>
+</div>
+
+@* Cart *@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cart-navbar" aria-labelledby="cart-navbar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cart"></button>
+    </div>
+    <div class="offcanvas-body">
+    </div>
+</div>

@@ -59,7 +59,7 @@ header .badge {
   color: white !important;
 }
 
-header .navbar-toggler {
+header #catalog-toggler {
   color: white;
   font-size: x-large;
 }
@@ -132,9 +132,8 @@ header .navbar-toggler {
   width: 75%;
 }
 
-#header-menu button {
-  background-color: transparent;
-  border: none;
+#header-menu .navbar-toggler {
+  color: white;
 }
 
 .top-menu-category-content {
