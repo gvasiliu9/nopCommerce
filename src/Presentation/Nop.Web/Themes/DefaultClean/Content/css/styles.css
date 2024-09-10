@@ -351,22 +351,22 @@ footer ul {
 #home-page-info-block .home-page-info-block-item {
   background-color: white;
   border-radius: 15px;
-  height: 120px;
+  min-height: 150px;
 }
 
-#home-page-info-block .col p {
+#home-page-info-block .home-page-info-block-item p {
   margin: 0;
 }
 
-#home-page-info-block .col p:nth-child(1) {
+#home-page-info-block .home-page-info-block-item p:nth-child(1) {
   color: #424242;
 }
 
-#home-page-info-block .col p:nth-child(2) {
+#home-page-info-block .home-page-info-block-item p:nth-child(2) {
   color: #616161;
 }
 
-#home-page-info-block .col i {
+#home-page-info-block .home-page-info-block-item i {
   font-size: x-large;
   color: #424242;
 }

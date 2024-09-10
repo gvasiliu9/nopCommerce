@@ -16,7 +16,7 @@
     <div class="row justify-content-center g-4">
         @foreach (var category in categories)
         {
-            <div class="col-3 top-menu-category">
+            <div class="col-12 col-md-6 col-lg-3 top-menu-category">
                 <a href="@(Url.RouteUrl<Category>(new { SeName = category.SeName }))">
                     <div class="top-menu-category-content" style="background-image: url(@category.Image);">
                         <p>@category.Name</p>
