@@ -18,10 +18,11 @@
                         <div class="row g-0">
                             <div class="col-8 col-sm-8 col-xl-9 col-lg-8 col-md-9">
                                 <div class="d-flex align-items-center">
-                                    <button id="catalog-toggler" class="navbar-toggler" type="button"
-                                        data-bs-toggle="offcanvas" data-bs-target="#catalog-navbar"
+                                    <button id="catalog-toggler" class="navbar-toggler d-flex align-items-center"
+                                        type="button" data-bs-toggle="offcanvas" data-bs-target="#catalog-navbar"
                                         aria-controls="catalog-navbar" aria-label="Toggle catalog">
-                                        <i class="fas fa-bars"></i>
+                                        <i class="fas fa-bars-staggered me-md-2"></i>
+                                        <span class="d-none d-md-block">Каталог товаров</span>
                                     </button>
                                     <div id="header-search-rounded" class="mx-3 mx-lg-4 hstack gap-0 flex-grow-1">
                                         @await Component.InvokeAsync(typeof(SearchBoxViewComponent))

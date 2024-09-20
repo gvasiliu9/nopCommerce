@@ -61,6 +61,9 @@ header .badge {
 
 header #catalog-toggler {
   color: white;
+}
+
+header #catalog-toggler i {
   font-size: x-large;
 }
 

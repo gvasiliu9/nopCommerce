@@ -15,29 +15,29 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <section class="footer-upper d-flex justify-content-between">
-                    <div class="footer-block follow-us">
-                        <div class="social">
-                            <div class="title">
-                                <strong>Categorii recomandate</strong>
-                                @{
-                                    var categories = Model.RecommendedCategories;
+            <div class="col d-flex gap-4 flex-wrap justify-content-between">
+                <div class="footer-block follow-us">
+                    <div class="v-stack social">
+                        <div class="title">
+                            <strong>Categorii recomandate</strong>
+                            @{
+                                var categories = Model.RecommendedCategories;
 
-                                    if(categories != null && categories.Any())
-                                    {
-                                        <ul class="list">
-                                            @foreach (var category in categories)
-                                            {
-                                                <li><a href="@Url.RouteUrl("Category", new { SeName = category.SeName})">@category.Name</a></li>
-                                            }
-                                        </ul>
-                                    }
+                                if(categories != null && categories.Any())
+                                {
+                                    <ul class="list">
+                                        @foreach (var category in categories)
+                                        {
+                                            <li><a href="@Url.RouteUrl("Category", new { SeName = category.SeName})">@category.Name</a></li>
+                                        }
+                                    </ul>
                                 }
-                            </div>
+                            }
                         </div>
                     </div>
-                    <div class="footer-block my-account">
+                </div>
+                <div class="footer-block my-accoun">
+                    <div class="v-stack">
                         <div class="title">
                             <strong>@T("Footer.MyAccount")</strong>
                         </div>
@@ -48,7 +48,9 @@
                             <li><a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a></li>
                         </ul>
                     </div>
-                    <div class="footer-block customer-service">
+                </div>
+                <div class="footer-block customer-service">
+                    <div class="v-stack">
                         <div class="title">
                             <strong>Relatii clienti</strong>
                         </div>
@@ -57,36 +59,38 @@
                             <li><a href="@Url.RouteUrl("ProductSearch")">email: sales@movo.md</a> </li>
                         </ul>
                     </div>
-                    <div class="footer-block information">
-                        <div class="title">
-                            <strong>@T("Footer.Information")</strong>
-                        </div>
-                        <ul class="list">
-                            @if (Model.SitemapEnabled && Model.DisplaySitemapFooterItem)
-                            {
-                                <li><a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a></li>
-                            }
-                            @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
-                            {
-                                <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
-                            }
-                            @if (Model.DisplayContactUsFooterItem)
-                            {
-                                <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
-                            }
-                        </ul>
+                </div>
+                <div class="footer-block information">
+                    <div class="v-stack">
+                    <div class="title">
+                        <strong>@T("Footer.Information")</strong>
                     </div>
-                </section>
+                    <ul class="list">
+                        @if (Model.SitemapEnabled && Model.DisplaySitemapFooterItem)
+                        {
+                            <li><a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a></li>
+                        }
+                        @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
+                        {
+                            <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
+                        }
+                        @if (Model.DisplayContactUsFooterItem)
+                        {
+                            <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+                        }
+                    </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <hr />
-                <section class="footer-lower d-flex justify-content-between">
-                    <div class="footer-logo d-flex align-items-center">
+                <div class="row footer-lower g-4">
+                    <div class="col-12 col-md-4 footer-logo d-flex align-items-center justify-content-center justify-content-md-start">
                         <img width="150" src="~/Themes/DefaultClean/Content/Images/footer_logo.png" alt="MOVO" />
                     </div>
-                    <div class="footer-info">
+                    <div class="col-12 col-md-4 footer-info">
                         <ul>
                             <li class="footer-disclaimer">@T("Content.CopyrightNotice", DateTime.Now.Year,
                                 Model.StoreName)</li>
@@ -98,7 +102,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="footer-payments d-flex alignt-items-center">
+                    <div class="col-12 col-md-4 footer-payments d-flex alignt-items-center justify-content-center justify-content-md-end">
                         <div class="row align-items-center">
                             <div class="col">
                                 <div class="h-stack gap-3">
@@ -111,7 +115,7 @@
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
     </div>
