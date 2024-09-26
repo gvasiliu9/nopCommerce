@@ -125,6 +125,12 @@ public partial interface ICatalogModelFactory
     /// <returns></returns>
     Task<FeaturedProductsModel> PrepareFeaturedProductsModelAsync();
 
+    /// <summary>
+    /// Prepare catalog model
+    /// </summary>
+    /// <returns></returns>
+    Task<List<CategorySimpleModel>> PrepareCatalogModelAsync();
+
     #endregion
 
     #region Manufacturers

@@ -926,6 +926,12 @@ public partial class CatalogModelFactory : ICatalogModelFactory
         };
     }
 
+    public Task<List<CategorySimpleModel>> PrepareCatalogModelAsync()
+    {
+        return PrepareCategorySimpleModelsAsync();
+    }
+
+
     #endregion
 
     #region Manufacturers

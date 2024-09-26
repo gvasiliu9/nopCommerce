@@ -373,3 +373,18 @@ footer ul {
   font-size: x-large;
   color: #424242;
 }
+
+.catalog strong a {
+  display: block;
+  text-decoration: none;
+  color: #424242;
+}
+
+.catalog .catalog-subcategory {
+  color: #616161;
+  text-decoration: none;
+}
+
+.catalog a:hover {
+  color: #e88d67;
+}

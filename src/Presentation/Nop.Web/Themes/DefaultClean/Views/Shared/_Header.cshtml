@@ -69,11 +69,12 @@
 
 @* Catalog *@
 <div class="offcanvas offcanvas-start" tabindex="-1" id="catalog-navbar" aria-labelledby="catalog-navbar-label">
-    <div class="offcanvas-header">
+    <div class="offcanvas-header pb-0">
         <h5 class="offcanvas-title">Catalog</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body pt-0">
+        @await Component.InvokeAsync(typeof(CatalogViewComponent))
     </div>
 </div>
 

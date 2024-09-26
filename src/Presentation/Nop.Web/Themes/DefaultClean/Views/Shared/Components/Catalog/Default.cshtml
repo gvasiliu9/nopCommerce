@@ -1,0 +1,41 @@
+@model List<CategorySimpleModel>
+@using Nop.Core
+
+@inject IWorkContext workContext
+
+<div class="catalog">
+    <form class="py-2">
+        <div class="input-group">
+            <span class="input-group-text" id="search-icon">
+                <i class="fas fa-search"></i>
+            </span>
+            <input id="catalog-filter" class="form-control" type="search" required placeholder="Cautare dupa categorie"
+                aria-label="@T("Search.SearchBox.Text.Label")">
+        </div>
+    </form>
+    @{
+        var categories = Model;
+
+        if (categories != null && categories.Any())
+        {
+            @foreach (var category in categories.OrderBy(c => c.Name))
+            {
+                <ul class="my-2">
+                    <li>
+                        <strong><a href="@Url.RouteUrl("Category", new { SeName = category.SeName})">@category.Name</a></strong>
+                        @if (category.HaveSubCategories)
+                        {
+                            <ul>
+                                @foreach (var subCategory in category.SubCategories.OrderBy(c => c.Name))
+                                {
+                                    <li><a class="catalog-subcategory"
+                                            href="@Url.RouteUrl("Category", new { SeName = subCategory.SeName})">@subCategory.Name</a></li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                </ul>
+            }
+        }
+    }
+</div>
