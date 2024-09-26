@@ -1,0 +1,22 @@
+#home-page-info-block .home-page-info-block-item {
+  background-color: white;
+  border-radius: 15px;
+  min-height: 150px;
+}
+
+#home-page-info-block .home-page-info-block-item p {
+  margin: 0;
+}
+
+#home-page-info-block .home-page-info-block-item p:nth-child(1) {
+  color: var(--text-darken-1-color);
+}
+
+#home-page-info-block .home-page-info-block-item p:nth-child(2) {
+  color: var(--text-darken-2-color);
+}
+
+#home-page-info-block .home-page-info-block-item i {
+  font-size: x-large;
+  color: var(--text-darken-1-color);
+}

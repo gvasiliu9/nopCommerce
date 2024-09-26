@@ -22,7 +22,7 @@
                                         type="button" data-bs-toggle="offcanvas" data-bs-target="#catalog-navbar"
                                         aria-controls="catalog-navbar" aria-label="Toggle catalog">
                                         <i class="fas fa-bars-staggered me-md-2"></i>
-                                        <span class="d-none d-md-block">Каталог товаров</span>
+                                        <span class="d-none d-md-block">@T("Catalog")</span>
                                     </button>
                                     <div id="header-search-rounded" class="mx-3 mx-lg-4 hstack gap-0 flex-grow-1">
                                         @await Component.InvokeAsync(typeof(SearchBoxViewComponent))
@@ -35,7 +35,7 @@
                                         data-bs-target="#user-navbar" aria-controls="user-navbar"
                                         aria-label="Toggle user">
                                         <i class="fas fa-user-group me-2"></i>
-                                        <span class="d-none d-lg-inline-block">Account</span>
+                                        <span class="d-none d-lg-inline-block">@T("account.myaccount")</span>
                                     </button>
                                     <button class="navbar-toggler p-2 position-relative" type="button"
                                         data-bs-toggle="offcanvas" data-bs-target="#wishes-navbar"
@@ -44,7 +44,6 @@
                                         <span
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
                                             0
-                                            <span class="visually-hidden">unread messages</span>
                                         </span>
                                     </button>
                                     <button class="navbar-toggler p-2 position-relative" type="button"
@@ -54,7 +53,6 @@
                                         <span
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
                                             0
-                                            <span class="visually-hidden">unread messages</span>
                                         </span>
                                     </button>
                                 </div>
@@ -70,7 +68,7 @@
 @* Catalog *@
 <div class="offcanvas offcanvas-start" tabindex="-1" id="catalog-navbar" aria-labelledby="catalog-navbar-label">
     <div class="offcanvas-header pb-0">
-        <h5 class="offcanvas-title">Catalog</h5>
+        <h5 class="offcanvas-title">@T("Catalog")</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body pt-0">
@@ -81,7 +79,7 @@
 @* Account *@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="user-navbar" aria-labelledby="user-navbar-label">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title">User</h5>
+        <h5 class="offcanvas-title">@T("account.myaccount")</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -91,7 +89,7 @@
 @* Wishes *@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="wishes-navbar" aria-labelledby="wishes-navbar-label">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title">Wishes</h5>
+        <h5 class="offcanvas-title">@T("enums.nop.core.domain.orders.shoppingcarttype.wishlist")</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Wishes"></button>
     </div>
     <div class="offcanvas-body">
@@ -101,7 +99,7 @@
 @* Cart *@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="cart-navbar" aria-labelledby="cart-navbar-label">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title">Cart</h5>
+        <h5 class="offcanvas-title">@T("enums.nop.core.domain.orders.shoppingcarttype.shoppingcart")</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cart"></button>
     </div>
     <div class="offcanvas-body">

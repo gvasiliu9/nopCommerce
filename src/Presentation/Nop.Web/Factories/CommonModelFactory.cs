@@ -642,6 +642,8 @@ public partial class CommonModelFactory : ICommonModelFactory
 
     public async Task<HeaderTopLinksModel> PrepareHeaderTopLinksModelAsync()
     {
+        var store = await _storeContext.GetCurrentStoreAsync();
+
         var topicModels = await (await _topicService.GetAllTopicsAsync(0))
             .Where(t => t.IncludeInTopMenu)
             .SelectAwait(async t => new HeaderTopLinksModel.TopicModel
@@ -653,6 +655,7 @@ public partial class CommonModelFactory : ICommonModelFactory
 
         return new HeaderTopLinksModel
         {
+            PhoneNumber = store.CompanyPhoneNumber,
             Topics = topicModels
         };
     }

@@ -3,14 +3,18 @@
 
 @inject IWorkContext workContext
 
+@{
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, $"~/Themes/DefaultClean/Content/js/catalog.js");
+}
+
 <div class="catalog">
-    <form class="py-2">
+    <form it="catalog-form" class="py-2">
         <div class="input-group">
             <span class="input-group-text" id="search-icon">
                 <i class="fas fa-search"></i>
             </span>
-            <input id="catalog-filter" class="form-control" type="search" required placeholder="Cautare dupa categorie"
-                aria-label="@T("Search.SearchBox.Text.Label")">
+            <input id="catalog-filter" maxlength="50" class="form-control" type="search" required
+                placeholder="@T("Catalog.Search")" aria-label="@T("Catalog.Search")">
         </div>
     </form>
     @{
@@ -20,7 +24,7 @@
         {
             @foreach (var category in categories.OrderBy(c => c.Name))
             {
-                <ul class="my-2">
+                <ul class="catalog-category my-2">
                     <li>
                         <strong><a href="@Url.RouteUrl("Category", new { SeName = category.SeName})">@category.Name</a></strong>
                         @if (category.HaveSubCategories)
