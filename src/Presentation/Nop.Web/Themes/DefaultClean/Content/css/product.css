@@ -1,5 +1,5 @@
 #featured-products h1 {
-  color: var(--featured-products-title-color);
+  color: var(--text-lighten-1-color);
 }
 
 .featured-products-row {
@@ -112,4 +112,13 @@
   background-color: var(--product-cart-button-active-background-color);
   border-color: transparent;
   color: white;
+}
+
+.product-selectors {
+  background-color: white;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  overflow: hidden;
 }

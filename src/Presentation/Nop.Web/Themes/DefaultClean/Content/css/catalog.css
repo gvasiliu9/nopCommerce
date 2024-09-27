@@ -45,3 +45,12 @@
 .catalog a:hover {
   color: var(--link-hover-color);
 }
+
+.catalog-filters {
+  background-color: white;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  overflow: hidden;
+}

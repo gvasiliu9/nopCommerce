@@ -1,0 +1,112 @@
+@model CategoryModel
+
+@using Nop.Core.Domain.Catalog
+@using Nop.Core.Domain.Common
+@using Nop.Core.Domain.Seo
+
+@inject Nop.Core.IWebHelper webHelper
+@inject SeoSettings seoSettings
+@inject CommonSettings commonSettings
+
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    NopHtml.AddTitleParts(!string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    //meta
+    NopHtml.AddMetaDescriptionParts(Model.MetaDescription);
+    NopHtml.AddMetaKeywordParts(Model.MetaKeywords);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-category-page");
+
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var categoryUrl = Url.RouteUrl<Category>(new { SeName = Model.SeName },
+        webHelper.GetCurrentRequestProtocol()).ToLowerInvariant();
+        NopHtml.AddCanonicalUrlParts(categoryUrl, seoSettings.QueryStringInCanonicalUrlsEnabled);
+    }
+
+    var breadcrumbDelimiter = commonSettings.BreadcrumbDelimiter;
+}
+
+@section Breadcrumb
+{
+    @if (Model.DisplayCategoryBreadcrumb)
+    {
+        <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="@Url.RouteUrl("Homepage")"
+                title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+        </li>
+        @{
+                    int position = 1;
+                }
+                @foreach (var cat in Model.CategoryBreadcrumb)
+                {
+                    var isLastCategory = cat.Id == Model.Id;
+                    @if (isLastCategory)
+                    {
+                        <li class="breadcrumb-item active" aria-current="page">@cat.Name</li>
+                    }
+                    else
+                    {
+                        <li class="breadcrumb-item" aria-current="page"> <a
+                                href="@(Url.RouteUrl<Category>(new { SeName = cat.SeName }))" title="@cat.Name">
+                                <span>@cat.Name</span>
+                            </a></li>
+
+
+                    }
+                    position++;
+                }
+                @if (seoSettings.MicrodataEnabled)
+                {
+                    <script type="application/ld+json">
+                        @Html.Raw(Model.JsonLd)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </script>
+                }
+            </ol>
+        </nav>
+
+        <div class="mb-4">
+    <h1>@Model.Name</h1>
+    @if (!string.IsNullOrWhiteSpace(Model.Description))
+            {
+                <div class="category-description">
+                    @Html.Raw(Model.Description)
+                </div>
+            }
+        </div>
+    }
+    }
+
+    @section CatalogFilters {
+    @await Html.PartialAsync("_CatalogFilters", Model.CatalogProductsModel)
+    }
+
+    @if (Model.SubCategories.Count > 0)
+{
+    <div class="row justify-content-start g-4 mb-4">
+    @foreach (var item in Model.SubCategories)
+        {
+            <div class="col-12 col-md-4 col-lg-2 top-menu-category">
+                <a href="@(Url.RouteUrl<Category>(new { SeName = item.SeName }))">
+                    <div class="top-menu-category-content"
+                        style="height: 120px; background-image: url(@item.PictureModel.ImageUrl);">
+                        <p>@item.Name</p>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+}
+@await Html.PartialAsync("_CatalogSelectors", Model.CatalogProductsModel)
+@{
+    var catalogProductsViewData = new ViewDataDictionary(ViewData);
+    catalogProductsViewData["fetchUrl"] = Html.Raw(Url.RouteUrl("GetCategoryProducts", new
+    {
+        categoryId = Model.Id
+    }));
+}
+@await Html.PartialAsync("_CatalogProducts", Model.CatalogProductsModel, catalogProductsViewData)

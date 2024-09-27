@@ -2,3 +2,16 @@ body {
   font-family: var(--font-family) !important;
   background-color: var(--background-color) !important;
 }
+
+h1 {
+  color: var(--text-lighten-1-color) !important;
+}
+
+.breadcrumb a {
+  color: var(--text-darken-1-color) !important;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--link-hover-color) !important;
+}
