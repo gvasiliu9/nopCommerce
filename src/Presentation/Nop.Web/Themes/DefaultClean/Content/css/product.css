@@ -18,7 +18,7 @@
 }
 
 .product-item {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   border-top-left-radius: 15px;
@@ -28,7 +28,7 @@
 }
 
 .product-item .picture {
-  height: 250px;
+  height: 200px;
   transition: background-size 0.5s ease;
   background-position: center;
   background-size: 100%; /* Start larger for sliding effect */
@@ -56,14 +56,28 @@
 }
 
 .product-item .product-title a {
-  color: black;
+  color: var(--text-darken-1-color);
   text-decoration: none;
   transition: color 0.3s; /* Smooth transition for text color */
   font-size: large;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; /* Number of lines to display */
+  line-height: 1.5em; /* Adjust based on your font size */
+  max-height: calc(1.5em * 2); /* Match line-height * number of lines */
 }
 
 .product-item .description {
   color: var(--text-darken-2-color);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; /* Number of lines to display */
+  line-height: 1.5em; /* Adjust based on your font size */
+  max-height: calc(1.5em * 2); /* Match line-height * number of lines */
 }
 
 .product-item .product-title a:hover {
@@ -77,10 +91,11 @@
 .product-item .prices {
   font-weight: bold;
   font-size: large;
+  color: var(--primary-color);
 }
 
 .product-item .buttons .heart-btn {
-  color: var(--text-darken-1-color);
+  color: var(--text-lighten-1-color);
   background-color: transparent;
   border-color: transparent;
   border: none;
@@ -95,23 +110,26 @@
   color: #e57373;
 }
 
-.product-item .buttons .shopping-cart-btn {
+.product-item .shopping-cart-btn {
   background-color: var(--product-cart-button-background-color);
   border-color: var(--product-cart-button-border-color);
-  color: var(--text-darken-1-color);
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in;
+  color: var(--product-cart-button-text-color);
+  transition: color 0.1s background-color;
+  width: 100%;
 }
 
-.product-item .buttons .shopping-cart-btn:hover {
+.product-item .shopping-cart-btn:hover {
   background-color: var(--product-cart-button-hover-background-color);
-  border-color: transparent;
-  color: white;
+  border-color: var(--product-cart-button-hover-border-color);
+  color: var(--product-cart-button-hover-text-color);
 }
 
-.product-item .buttons .shopping-cart-btn:active {
-  background-color: var(--product-cart-button-active-background-color);
-  border-color: transparent;
-  color: white;
+.product-item .shopping-cart-btn:active {
+  background-color: var(
+    --product-cart-button-hover-background-color
+  ) !important;
+  border-color: var(--product-cart-button-hover-border-color) !important;
+  color: var(--product-cart-button-hover-text-color) !important;
 }
 
 .product-selectors {

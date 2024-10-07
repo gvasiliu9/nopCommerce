@@ -47,14 +47,10 @@
 <div class="product-item d-flex flex-column" data-productid="@Model.Id">
     @{
         var picture = Model.PictureModels.FirstOrDefault();
-        <div class="picture" style="background-image: url(@picture?.ImageUrl);">
-            @* <a href="@(Url.RouteUrl<Product>(new { SeName = Model.SeName }))" title="@picture?.Title">
-        <img alt="@picture?.AlternateText" src="@picture?.ImageUrl" title="@picture?.Title" />
-        </a> *@
-        </div>
+        <div class="picture" style="background-image: url(@picture?.ImageUrl);"></div>
     }
-    <div class="details pt-2 px-3 pb-3 flex-grow-1 d-flex flex-column justify-content-between">
-        <div class="v-stack">
+    <div class="details p-3 vstack gap-2 d-flex justify-content-between">
+        <div>
             <h2 class="product-title">
                 <a href="@(Url.RouteUrl<Product>(new {SeName = Model.SeName }))">@Model.Name</a>
             </h2>
@@ -62,18 +58,21 @@
                 @Model.ShortDescription
             </div>
         </div>
-        <div class="d-flex add-info justify-content-between pt-4 align-items-center">
-            <div class="prices">
-                <span class="price actual-price">@Model.ProductPrice.Price</span>
+        <div>
+            <div class="d-flex add-info justify-content-between align-items-center">
+                <div class="prices">
+                    <span class="price actual-price">@Model.ProductPrice.Price</span>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="btn btn-primary position-relative heart-btn">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
             </div>
-            <div class="buttons">
-                <button type="button" class="btn btn-primary position-relative heart-btn">
-                    <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-primary position-relative shopping-cart-btn">
-                    <i class="fas fa-shopping-cart"></i>
-                </button>
-            </div>
+            <button type="button" class="btn btn-primary position-relative shopping-cart-btn mt-2">
+                <i class="fas fa-shopping-cart"></i>
+                Adaugă în coș
+            </button>
         </div>
     </div>
 </div>
